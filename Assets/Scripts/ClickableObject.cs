@@ -8,6 +8,7 @@ public class ClickableObject : MonoBehaviour
     public bool updateDialogue;
     public bool isGameOver;
     public bool advancesStory;
+    public float secondsToDelayBeforeAdvancingStory = 5f;
     public bool advancesScene;
     public List<GameObject> objectsThatDisappearOnClick = new List<GameObject>();
     private SpriteRenderer spriteRenderer;
@@ -44,7 +45,7 @@ public class ClickableObject : MonoBehaviour
         if (isGameOver)
             GameManager.Instance.GameOver(message);
         if (advancesStory)
-            GameManager.Instance.AdvanceStory();
+            GameManager.Instance.AdvanceStory(secondsToDelayBeforeAdvancingStory);
         if (advancesScene)
             GameManager.Instance.AdvanceScene();
     }
