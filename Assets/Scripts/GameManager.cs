@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,13 @@ public class GameManager : MonoBehaviour
     public TMP_Text dialogueText;
     public GameObject gameOverPanel;
     public TMP_Text gameOverText;
-    public GameObject clickableObjects;
     public List<GameObject> scenes = new List<GameObject>();
     private int sceneCounter;
     private int currentSceneProgressCounter;
+    public GameObject CurrentScene { get { return scenes[sceneCounter]; } }
+    public string CurrentSceneName { get { return scenes[sceneCounter].name; } }
+    public GameObject PreviousScene { get { return scenes[sceneCounter - 1]; } }
+    public string PreviousSceneName { get { return scenes[sceneCounter - 1].name; } }
 
     private void Awake()
     {
@@ -36,13 +40,12 @@ public class GameManager : MonoBehaviour
 
     public void ShowDialogue(string message)
     {
-        dialoguePanel.SetActive(true);
-        dialogueText.text = message;
-
         // Handle any special cases
-        string currentSceneName = scenes[sceneCounter].name;
-        if (currentSceneName == "Kitchen" && currentSceneProgressCounter > 0)
-            dialogueText.text = "I call the airport and they confirm I am on that flight. I have no idea who bought the ticket for me...";
+        if (CurrentSceneName == "Kitchen" && currentSceneProgressCounter > 0)
+            message = "I call the airport and they confirm I am on that flight. I have no idea who bought the ticket for me...";
+
+        // Update dialogue
+        DialogueHelper.ShowDialogue(dialoguePanel, dialogueText, message);
     }
 
     public void HideObject(GameObject gameObject)
@@ -53,16 +56,13 @@ public class GameManager : MonoBehaviour
     public void AdvanceStory()
     {
         // Exit criteria
-        string currentSceneName = scenes[sceneCounter].name;
-        if (currentSceneName == "Kitchen" && currentSceneProgressCounter == 0)
+        if (CurrentSceneName == "Kitchen" && currentSceneProgressCounter == 0)
             return;
 
         sceneCounter++;
         currentSceneProgressCounter = 0;
-        GameObject previousScene = scenes[sceneCounter - 1];
-        GameObject nextScene = scenes[sceneCounter];
         float sceneEndDelay;
-        if (previousScene.name == "MainMenu")
+        if (PreviousSceneName == "MainMenu")
         {
             sceneEndDelay = 0f;
             titlePanel.SetActive(false);
@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
         {
             sceneEndDelay = 5f;
         }
-        StartCoroutine(UpdateScene(previousScene, nextScene, sceneEndDelay));
+        StartCoroutine(UpdateScene(PreviousScene, CurrentScene, sceneEndDelay));
     }
 
     public void AdvanceScene()
@@ -91,38 +91,12 @@ public class GameManager : MonoBehaviour
 
     private void PopulateInitialDialogue()
     {
-        string currentSceneName = scenes[sceneCounter].name;
-        string initialDialogue = "";
-        switch (currentSceneName)
-        {
-            case "Bedroom":
-                initialDialogue = "I wake up sore and tired. I have no memory of last night. I'm alone in bed and thirsty. Eyes barely open, I fumble around looking for something to drink...";
-                break;
-            case "Bathroom":
-                initialDialogue = "I make my way to the bathroom to rinse off whatever happened yesterday.";
-                break;
-            case "Kitchen":
-                initialDialogue = "I'm not hungry but out of habit I wander into the kitchen after getting dressed.";
-                break;
-            case "Airport":
-                initialDialogue = "I arrive at LaGuardia.";
-                break;
-            case "Flight":
-                initialDialogue = "Hmm, meal service...";
-                break;
-            case "Brother":
-                initialDialogue = "We land and I'm greeted by my little brother. He needs help carrying furniture and I guess my plane ticket was cheaper than hiring professional movers...";
-                break;
-            default:
-                initialDialogue = "I'm not sure what to say...";
-                break;
-        }
+        string initialDialogue = DialogueHelper.GetInitialDialogue(CurrentScene);
         ShowDialogue(initialDialogue);
     }
 
     public void GameOver(string message)
     {
-        clickableObjects.SetActive(false);
         gameOverText.text = "Game over";
         StartCoroutine(UpdateScene(scenes[sceneCounter], gameOverPanel, 5f));
     }
@@ -131,7 +105,6 @@ public class GameManager : MonoBehaviour
     {
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
-        clickableObjects.SetActive(true);
     }
 
 }
