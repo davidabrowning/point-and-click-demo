@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void AdvanceStory()
+    public void AdvanceStory(float secondsToDelayBeforeAdvancing)
     {
         // Exit criteria
         if (CurrentSceneName == "Kitchen" && currentSceneProgressCounter == 0)
@@ -61,17 +61,9 @@ public class GameManager : MonoBehaviour
 
         sceneCounter++;
         currentSceneProgressCounter = 0;
-        float sceneEndDelay;
         if (PreviousSceneName == "MainMenu")
-        {
-            sceneEndDelay = 0f;
             titlePanel.SetActive(false);
-        }
-        else
-        {
-            sceneEndDelay = 5f;
-        }
-        StartCoroutine(UpdateScene(PreviousScene, CurrentScene, sceneEndDelay));
+        StartCoroutine(UpdateScene(PreviousScene, CurrentScene, secondsToDelayBeforeAdvancing));
     }
 
     public void AdvanceScene()

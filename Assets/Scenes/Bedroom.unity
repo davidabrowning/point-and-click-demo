@@ -378,6 +378,7 @@ MonoBehaviour:
   updateDialogue: 1
   isGameOver: 0
   advancesStory: 1
+  secondsToDelayBeforeAdvancingStory: 5
   advancesScene: 0
   objectsThatDisappearOnClick:
   - {fileID: 9014878}
@@ -534,6 +535,7 @@ MonoBehaviour:
   updateDialogue: 1
   isGameOver: 0
   advancesStory: 1
+  secondsToDelayBeforeAdvancingStory: 5
   advancesScene: 0
   objectsThatDisappearOnClick:
   - {fileID: 637932190}
@@ -1331,6 +1333,7 @@ MonoBehaviour:
   updateDialogue: 1
   isGameOver: 0
   advancesStory: 0
+  secondsToDelayBeforeAdvancingStory: 5
   advancesScene: 0
   objectsThatDisappearOnClick:
   - {fileID: 802823620}
@@ -1755,6 +1758,7 @@ MonoBehaviour:
   updateDialogue: 1
   isGameOver: 0
   advancesStory: 1
+  secondsToDelayBeforeAdvancingStory: 3
   advancesScene: 0
   objectsThatDisappearOnClick:
   - {fileID: 588268659}
@@ -2001,6 +2005,7 @@ MonoBehaviour:
   updateDialogue: 1
   isGameOver: 1
   advancesStory: 0
+  secondsToDelayBeforeAdvancingStory: 5
   advancesScene: 0
   objectsThatDisappearOnClick:
   - {fileID: 747101833}
@@ -2147,6 +2152,7 @@ MonoBehaviour:
   updateDialogue: 1
   isGameOver: 0
   advancesStory: 1
+  secondsToDelayBeforeAdvancingStory: 5
   advancesScene: 0
   objectsThatDisappearOnClick: []
   highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -2550,6 +2556,7 @@ MonoBehaviour:
   updateDialogue: 1
   isGameOver: 0
   advancesStory: 1
+  secondsToDelayBeforeAdvancingStory: 5
   advancesScene: 0
   objectsThatDisappearOnClick:
   - {fileID: 1326339429}
@@ -2927,7 +2934,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1314377606}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: AdvanceStory
-        m_Mode: 1
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3009,7 +3016,6 @@ MonoBehaviour:
   dialogueText: {fileID: 479298847}
   gameOverPanel: {fileID: 1157655763}
   gameOverText: {fileID: 1593096083}
-  clickableObjects: {fileID: 588268659}
   scenes:
   - {fileID: 1909934581}
   - {fileID: 1512366861}
@@ -3251,6 +3257,7 @@ MonoBehaviour:
   updateDialogue: 1
   isGameOver: 1
   advancesStory: 0
+  secondsToDelayBeforeAdvancingStory: 5
   advancesScene: 0
   objectsThatDisappearOnClick:
   - {fileID: 588268659}
@@ -3661,6 +3668,7 @@ MonoBehaviour:
   updateDialogue: 1
   isGameOver: 1
   advancesStory: 0
+  secondsToDelayBeforeAdvancingStory: 5
   advancesScene: 0
   objectsThatDisappearOnClick:
   - {fileID: 637932190}
@@ -4307,6 +4315,7 @@ MonoBehaviour:
   updateDialogue: 1
   isGameOver: 1
   advancesStory: 0
+  secondsToDelayBeforeAdvancingStory: 5
   advancesScene: 0
   objectsThatDisappearOnClick:
   - {fileID: 1326339429}
@@ -4509,6 +4518,7 @@ MonoBehaviour:
   updateDialogue: 1
   isGameOver: 0
   advancesStory: 0
+  secondsToDelayBeforeAdvancingStory: 5
   advancesScene: 1
   objectsThatDisappearOnClick:
   - {fileID: 1917117113}
@@ -5127,6 +5137,7 @@ MonoBehaviour:
   updateDialogue: 1
   isGameOver: 1
   advancesStory: 0
+  secondsToDelayBeforeAdvancingStory: 5
   advancesScene: 0
   objectsThatDisappearOnClick:
   - {fileID: 9014878}
